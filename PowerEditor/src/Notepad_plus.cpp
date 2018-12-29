@@ -3433,6 +3433,9 @@ void Notepad_plus::loadBufferIntoView(BufferID id, int whichOne, bool dontClose)
 
 	MainFileManager->addBufferReference(id, viewToOpen);
 
+	// add ligature support
+	::SendMessage(viewToOpen->getHSelf(), SCI_SETTECHNOLOGY, SC_TECHNOLOGY_DIRECTWRITE, 0);
+
 	//close clean doc. Use special logic to prevent flicker of tab showing then hiding
 	if (idToClose != BUFFER_INVALID)
 	{
